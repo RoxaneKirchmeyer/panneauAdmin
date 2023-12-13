@@ -12,7 +12,6 @@ Le panneau sera séparé en 4 onglets :
 
 
 ## Contraintes
-- Utiliser UNIQUEMENT CSS (pas de BOOTSTRAP ou autre Framework)
 - Utiliser la super globale SESSION lors de la connexion et la détruire lors de la déconnexion
 
 
