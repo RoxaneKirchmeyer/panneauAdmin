@@ -1,0 +1,30 @@
+.titre {
+    text-align: center;
+    font-size: 2rem;
+    width: 100%;
+    font-weight: 500;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+a {
+    color: black;
+    padding: 1rem;
+    border: 1px solid gray;
+    font-size: 1.2rem;
+}
+
+a:hover {
+    background-color: gray;
+    color: white;
+    transition: ease-in-out 1s;
+}
+
+.warning {
+    
+}
+
+

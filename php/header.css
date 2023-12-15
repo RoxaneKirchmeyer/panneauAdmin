@@ -1,0 +1,21 @@
+header {
+    width: 100%;
+}
+
+.admin {
+    font-size: 2.5rem;
+    color: white;
+    background-color: black;
+    padding: 2rem;
+    text-align: center;
+}
+
+nav {
+    padding: 2rem;
+}
+
+ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
