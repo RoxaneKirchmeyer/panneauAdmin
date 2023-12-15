@@ -1,18 +1,17 @@
-<!-- Un form dans utilisateurs avec nom prenom age role (un select avec option formateur / apprenant) -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="form.css">
     <title>Panneau d'administration</title>
 </head>
 <body>
+
 <header>
 <p class="admin">Panneau d'administration</p>
 <nav>
@@ -25,10 +24,8 @@
 </nav>
 </header>
 
-
-
 <div class="warning">
-    <p>Vous devez être connecté pour avoir accès à cette partie du site.</p>
+    Vous devez être connecté pour avoir accès à cette partie du site.
 </div>
 
 

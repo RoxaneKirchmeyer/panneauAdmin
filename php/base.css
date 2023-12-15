@@ -11,20 +11,18 @@
 }
 
 a {
-    color: black;
+    background-color: gray;
+    color: white;
     padding: 1rem;
     border: 1px solid gray;
     font-size: 1.2rem;
 }
 
-a:hover {
-    background-color: gray;
-    color: white;
-    transition: ease-in-out 1s;
-}
-
 .warning {
-    
+    padding: 15px;
+    background-color: #fff9c4; /* Couleur jaune clair */
+    border: 1px solid #ffee58; /* Bordure jaune */
+    border-radius: 5px; /* Coins arrondis */
 }
 
 
