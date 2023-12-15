@@ -1,0 +1,27 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+a {
+    background-color: gray;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.erreur {
+    padding: 15px;
+    background-color: #fff9c4;
+    border: 1px solid #ffee58; 
+    border-radius: 5px; 
+}
+
+.titre {
+    text-align: center;
+    font-size: 2rem;
+    width: 100%;
+    font-weight: 500;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+
+

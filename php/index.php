@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="base.css">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="header.css">
-    <link rel="stylesheet" href="form.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/form.css">
     <title>Panneau d'administration</title>
 </head>
 <body>
@@ -24,7 +24,7 @@
 </nav>
 </header>
 
-<div class="warning">
+<div class="attention">
     Vous devez être connecté pour avoir accès à cette partie du site.
 </div>
 
