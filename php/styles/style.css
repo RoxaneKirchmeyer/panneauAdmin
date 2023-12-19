@@ -1,0 +1,120 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+header {
+    width: 100%;
+}
+
+nav {
+    padding: 2rem;
+}
+
+ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+a {
+    color: rgb(0, 0, 0);
+    font-size: 1.2rem;
+}
+
+label {
+    font-size: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    padding: 1rem;
+}
+
+.form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 2rem;
+}
+
+input {
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    width: auto;
+}
+
+input[type="submit"] {
+    background-color: gray;
+}
+
+select {
+    margin-top: 10px;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+}
+
+
+.titre {
+    text-align: center;
+    font-size: 2rem;
+    width: 100%;
+    font-weight: 500;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.admin {
+    font-size: 2.5rem;
+    color: white;
+    background-color: rgb(58, 58, 58);
+    padding: 2rem;
+    text-align: center;
+}
+
+.erreur {
+    background-color: #ffe6e6;
+    border: 1px solid #ff7474;
+    color: #ff3333;
+    padding: 10px;
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+
+.valide, .maj, .deco {
+    padding: 15px;
+    background-color: #adffae;
+    border: 1px solid #004a0f;
+    text-align: center;
+    width: 80%;
+    margin: auto;
+    color: #004a0f;
+}
+
+.attention {
+    padding: 15px;
+    background-color: #fff59d;
+    border: 1px solid #786c00;
+    text-align: center;
+    padding: 10px;
+    width: 80%;
+    margin: auto;
+    color: #786c00;
+}
+
+
+section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+section p {
+    margin: 5px 0;
+    font-size: 1.5rem;
+}
