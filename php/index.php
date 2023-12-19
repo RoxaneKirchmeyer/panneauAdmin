@@ -1,5 +1,14 @@
 <?php session_start(); ?>
 
+
+<!-- Accueil et connexion pointe sur la page "identifiez vous" -->
+<!-- Utilisateurs et parametres si on est connecté affiche le contenu des pages 
+sinon la popup vous devez etre connecté apparait-->
+<!-- Quand on est connecté, on appuie sur accueil et on a bienvenue prénom nom -->
+<!-- Dans infos utilisateurs on a le nom prénom age et role -->
+<!-- Dans paramètres, on vérifie que les input sont pas vides, on valide, on a la popup verte donnée maj -->
+<!-- Quand on clic sur déco, la popup deco apparait et on est deco -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +44,7 @@
     </header>
 
 <?php
-
+// Si l'utilisateur est n'est pas connecté, affiche message warning sur pages user et parametres
 if (!$userConnected) {
     if (isset($_GET['page']) && ($_GET['page'] === "utilisateurs" || $_GET['page'] === "parametres")) {
         echo "<p class='attention'>Vous devez être connecté.e pour accéder à cette page.</p>";
@@ -45,28 +54,20 @@ if (!$userConnected) {
 
 <?php
     if (isset($_GET['page']) && $_GET['page'] === "connexion") {
-    // Initialise le message d'erreur
     $message = '';
 
-// Vérifie si le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Données d'identification correctes
     $identifiant_correct = 'roxane';
     $motDePasse_correct = '1234';
     
-    // Vérifie si les identifiants soumis correspondent aux données correctes
-    if (
-        isset($_POST['identifiant']) && isset($_POST['motDePasse']) &&
-        $_POST['identifiant'] === $identifiant_correct &&
-        $_POST['motDePasse'] === $motDePasse_correct
+    if (isset($_POST['identifiant']) && isset($_POST['motDePasse']) 
+    && $_POST['identifiant'] === $identifiant_correct 
+    &&$_POST['motDePasse'] === $motDePasse_correct
     ) {
-        // Affiche un message de validation si les identifiants sont corrects
         $message = "<p class='valide'>Vous êtes maintenant connecté.e.</p>";
 
         $_SESSION['user'] = $_POST['identifiant'];
-
     } else {
-        // Stocke le message d'erreur
         $message = "<p class='erreur'>Mot de passe ou identifiant incorrect.</p>";
     }
 }
@@ -93,6 +94,7 @@ echo "<div class='container'>
 if (isset($_GET['page']) && $_GET['page'] === "accueil") {
     // Initialise le message d'erreur
     $message = '';
+    $welcome = '';
 
     // Vérifie si le formulaire a été soumis
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -101,13 +103,9 @@ if (isset($_GET['page']) && $_GET['page'] === "accueil") {
         $motDePasse_correct = '1234';
         
         // Vérifie si les identifiants soumis correspondent aux données correctes
-        if (
-            isset($_POST['identifiant']) && isset($_POST['motDePasse']) &&
-            $_POST['identifiant'] === $identifiant_correct &&
-            $_POST['motDePasse'] === $motDePasse_correct
-        ) {
             // Affiche un message de validation si les identifiants sont corrects
             $message = "<p class='valide'>Vous êtes maintenant connecté.e.</p>";
+
 
             // Démarre la session après la connexion réussie
             $_SESSION['user'] = $_POST['identifiant'];
@@ -116,23 +114,22 @@ if (isset($_GET['page']) && $_GET['page'] === "accueil") {
             // Stocke le message d'erreur
             $message = "<p class='erreur'>Mot de passe ou identifiant incorrect.</p>";
         }
-    }
 
-    // Affiche toujours le formulaire pour se connecter si la page est "accueil"
+         // Affiche toujours le formulaire pour se connecter si la page est "accueil"
     echo "<div class='container'>
-            <p class='titre'>Identifiez vous</p>
-            <form method='post' class='form'>
-                <label for='identifiant'>Identifiant :&nbsp;
-                    <input type='text' name='identifiant' placeholder='Identifiant' required>
-                </label>
-                <label for='motDePasse'>Mot de passe :&nbsp;
-                    <input type='password' name='motDePasse' placeholder='Mot de passe' required>
-                </label>
-                <input type='submit' name='submit' value='Se connecter'>
-            </form>
-            $message
-          </div>";
-}
+    <p class='titre'>Identifiez vous</p>
+    <form method='post' class='form'>
+        <label for='identifiant'>Identifiant :&nbsp;
+            <input type='text' name='identifiant' placeholder='Identifiant' required>
+        </label>
+        <label for='motDePasse'>Mot de passe :&nbsp;
+            <input type='password' name='motDePasse' placeholder='Mot de passe' required>
+        </label>
+        <input type='submit' name='submit' value='Se connecter'>
+    </form>
+    $message
+  </div>";
+    }
 ?>
 
 <?php
@@ -175,18 +172,18 @@ if (isset($_GET['page']) && $_GET['page'] === "parametres") {
         echo "<p class='titre'>Modifications de vos paramètres</p>
         <form class='form' method='post'> 
             <label for='prenom'>Prénom :&nbsp;
-                <input id='prenom' type='text' name='prenom' placeholder='Écrivez votre prénom' value='' required>
+                <input id='prenom' type='text' name='prenom' placeholder='Écrivez votre prénom' value='Roxane' required>
             </label>
             <label for='nom'>Nom :&nbsp;
-                <input id='nom' type='text' name='nom' placeholder='Écrivez votre nom' value='' required>
+                <input id='nom' type='text' name='nom' placeholder='Écrivez votre nom' value='Kirchmeyer' required>
             </label>
             <label for='age'>Âge :&nbsp;
-                <input id='age' type='number' name='age' placeholder='Entrez votre âge' value='' required>
+                <input id='age' type='number' name='age' placeholder='Entrez votre âge' value='26' required>
             </label>
             <label for='role'>Rôle :&nbsp;
                 <select id='role' name='role'>
-                    <option value='apprenant.e'>Apprenant.e</option>
-                    <option value='formateur.trice'>Formateur.trice</option>
+                    <option value='Apprenant.e'>Apprenant.e</option>
+                    <option value='Formateur.trice'>Formateur.trice</option>
                 </select>
             </label>
             <input type='submit' value='Valider les informations'>
