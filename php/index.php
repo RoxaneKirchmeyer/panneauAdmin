@@ -10,7 +10,7 @@ sinon la popup vous devez etre connecté apparait-->
 <!-- Quand on clic sur déco, la popup deco apparait et on est deco -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
@@ -30,11 +30,8 @@ sinon la popup vous devez etre connecté apparait-->
             <?php
             $userConnected = isset($_SESSION['user']);
               if ($userConnected) {
-                // On affiche un onglet information personnel, un onglet paramètres et un onglet de déconnexion
                 echo '<li><a href="?page=deconnexion">Déconnexion</a></li>';
             }
-
-            // Sinon on affiche un onglet de connexion
             else {
                 echo '<li><a href="?page=connexion">Connexion</a></li>';
             }
@@ -73,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Affiche toujours le formulaire pour se connecter si la page est "accueil"
-echo "<div class='container'>
+echo "<div>
         <p class='titre'>Identifiez vous</p>
         <form method='post' class='form'>
             <label for='identifiant'>Identifiant :&nbsp;
@@ -94,7 +91,6 @@ echo "<div class='container'>
 if (isset($_GET['page']) && $_GET['page'] === "accueil") {
     // Initialise le message d'erreur
     $message = '';
-    $welcome = '';
 
     // Vérifie si le formulaire a été soumis
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -116,7 +112,7 @@ if (isset($_GET['page']) && $_GET['page'] === "accueil") {
         }
 
          // Affiche toujours le formulaire pour se connecter si la page est "accueil"
-    echo "<div class='container'>
+    echo "<div>
     <p class='titre'>Identifiez vous</p>
     <form method='post' class='form'>
         <label for='identifiant'>Identifiant :&nbsp;
