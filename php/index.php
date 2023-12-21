@@ -41,7 +41,7 @@ sinon la popup vous devez etre connecté apparait-->
     </header>
 
 <?php
-// Si l'utilisateur est n'est pas connecté, affiche message warning sur pages user et parametres
+// Si l'utilisateur n'est pas connecté, affiche message warning sur pages user et parametres
 if (!$userConnected) {
     if (isset($_GET['page']) && ($_GET['page'] === "utilisateurs" || $_GET['page'] === "parametres")) {
         echo "<p class='attention'>Vous devez être connecté.e pour accéder à cette page.</p>";
@@ -53,23 +53,18 @@ if (!$userConnected) {
     if (isset($_GET['page']) && $_GET['page'] === "connexion") {
     $message = '';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $identifiant_correct = 'roxane';
     $motDePasse_correct = '1234';
     
-    if (isset($_POST['identifiant']) && isset($_POST['motDePasse']) 
-    && $_POST['identifiant'] === $identifiant_correct 
-    &&$_POST['motDePasse'] === $motDePasse_correct
-    ) {
-        $message = "<p class='valide'>Vous êtes maintenant connecté.e.</p>";
-
-        $_SESSION['user'] = $_POST['identifiant'];
+    if (isset($_POST['identifiant']) && isset($_POST['motDePasse'])) {
+        if ($_POST['identifiant'] === $identifiant_correct && $_POST['motDePasse'] === $motDePasse_correct) {
+            $message = "<p class='valide'>Vous êtes maintenant connecté.e.</p>";
+            $_SESSION['user'] = $_POST['identifiant'];
     } else {
         $message = "<p class='erreur'>Mot de passe ou identifiant incorrect.</p>";
     }
 }
 
-// Affiche toujours le formulaire pour se connecter si la page est "accueil"
 echo "<div>
         <p class='titre'>Identifiez vous</p>
         <form method='post' class='form'>
@@ -88,54 +83,57 @@ echo "<div>
     
 <!-- Login -->
 <?php
-if (isset($_GET['page']) && $_GET['page'] === "accueil") {
-    // Initialise le message d'erreur
-    $message = '';
-
-    // Vérifie si le formulaire a été soumis
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Données d'identification correctes
-        $identifiant_correct = 'roxane';
-        $motDePasse_correct = '1234';
+    if (isset($_GET['page']) && $_GET['page'] === "accueil") {
+        if (isset($_SESSION['user'])) {
+            $prenom = isset($_SESSION['prenom']) ? $_SESSION['prenom'] : '';
+            $nom = isset($_SESSION['nom']) ? $_SESSION['nom'] : '';
         
-        // Vérifie si les identifiants soumis correspondent aux données correctes
-            // Affiche un message de validation si les identifiants sont corrects
-            $message = "<p class='valide'>Vous êtes maintenant connecté.e.</p>";
-
-
-            // Démarre la session après la connexion réussie
-            $_SESSION['user'] = $_POST['identifiant'];
-
-        } else {
-            // Stocke le message d'erreur
-            $message = "<p class='erreur'>Mot de passe ou identifiant incorrect.</p>";
+            // Afficher le message de bienvenue avec le prénom et le nom
+            echo "Bienvenue, " . $_SESSION['nom'] . " " . $_SESSION['prenom'];
         }
+        $message = '';
 
-         // Affiche toujours le formulaire pour se connecter si la page est "accueil"
-    echo "<div>
-    <p class='titre'>Identifiez vous</p>
-    <form method='post' class='form'>
-        <label for='identifiant'>Identifiant :&nbsp;
-            <input type='text' name='identifiant' placeholder='Identifiant' required>
-        </label>
-        <label for='motDePasse'>Mot de passe :&nbsp;
-            <input type='password' name='motDePasse' placeholder='Mot de passe' required>
-        </label>
-        <input type='submit' name='submit' value='Se connecter'>
-    </form>
-    $message
-  </div>";
+        if (isset($_POST['identifiant']) && isset($_POST['motDePasse'])) {
+            $identifiant_correct = 'roxane';
+            $motDePasse_correct = '1234';
+
+            if ($_POST['identifiant'] === $identifiant_correct && $_POST['motDePasse'] === $motDePasse_correct) {
+                $message = "<p class='valide'>Vous êtes maintenant connecté.e.</p>";
+                $_SESSION['user'] = $_POST['identifiant'];
+            } else {
+                $message = "<p class='erreur'>Mot de passe ou identifiant incorrect.</p>";
+            }
+        }
+        echo "<div>
+                <p class='titre'>Identifiez-vous</p>
+                <form method='post' class='form'>
+                    <label for='identifiant'>Identifiant :&nbsp;
+                        <input type='text' name='identifiant' placeholder='Identifiant' required>
+                    </label>
+                    <label for='motDePasse'>Mot de passe :&nbsp;
+                        <input type='password' name='motDePasse' placeholder='Mot de passe' required>
+                    </label>
+                    <input type='submit' name='submit' value='Se connecter'>
+                </form>
+                $message
+            </div>";
     }
 ?>
 
+
 <?php
 if (isset($_GET['page']) && $_GET['page'] === "utilisateurs") {
+    if (isset($_SESSION['user'])) {
+        $prenom = isset($_SESSION['prenom']) ? $_SESSION['prenom'] : '';
+        $nom = isset($_SESSION['nom']) ? $_SESSION['nom'] : '';
+    
+        // Afficher le message de bienvenue avec le prénom et le nom
+        echo "Bienvenue, " . $_SESSION['nom'] . " " . $_SESSION['prenom'];
+    }
     echo "<section>
             <p class='titre'>Vos informations utilisateurs</p>";
 
-    // Vérifie si les informations sont disponibles dans la session
     if (isset($_SESSION['prenom'], $_SESSION['nom'], $_SESSION['age'], $_SESSION['role'])) {
-        // Affichage des informations récupérées depuis la page "Paramètres"
         echo "<p>Prénom : " . $_SESSION['prenom'] . "</p>";
         echo "<p>Nom : " . $_SESSION['nom'] . "</p>";
         echo "<p>Âge : " . $_SESSION['age'] . "</p>";
@@ -148,20 +146,26 @@ if (isset($_GET['page']) && $_GET['page'] === "utilisateurs") {
 ?>
 
 <?php
-$modifMessage = ''; // Initialisez la variable $modifMessage
+$modifMessage = '';
 
 if (isset($_GET['page']) && $_GET['page'] === "parametres") {
+    if (isset($_SESSION['user'])) {
+        $prenom = isset($_SESSION['prenom']) ? $_SESSION['prenom'] : '';
+        $nom = isset($_SESSION['nom']) ? $_SESSION['nom'] : '';
+    
+        // Afficher le message de bienvenue avec le prénom et le nom
+        echo "Bienvenue, " . $_SESSION['nom'] . " " . $_SESSION['prenom'];
+    }
     if (!isset($_SESSION['user'])) {
         echo "<p class='titre'>Les informations ne sont pas disponibles.</p>";
     } else {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // Stocke les informations modifiées dans la session
+        if (isset($_POST['prenom']) && isset($_POST['nom']) &&
+            isset($_POST['age']) && isset($_POST['role'])
+        ) {
             $_SESSION['prenom'] = $_POST['prenom'];
             $_SESSION['nom'] = $_POST['nom'];
             $_SESSION['age'] = $_POST['age'];
             $_SESSION['role'] = $_POST['role'];
-
-            // Définissez le message de modification après la soumission du formulaire
             $modifMessage = "<p class='maj'>Les données utilisateurs ont bien été mises à jour.</p>";
         }
 
